@@ -13,7 +13,7 @@ const CreateEventButton = () => {
   return (
     <div>
       <button className="border p-2 rounded-full flex items-center shadow-md hover:shadow-2xlborder p-2 rounded-full flex items-center shadow-md hover:shadow-2xl">
-      <span class="material-symbols-outlined">
+      <span className="material-symbols-outlined">
 add
 </span>
       </button>
