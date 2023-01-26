@@ -1,14 +1,22 @@
 import {getMonth}from './util'
 import './App.css';
-import React,{useState} from 'react';
+import React,{useState,useContext,useEffect} from 'react';
 import CalendarHeader from './components/CalendarHeader';
 import Sidebar from './components/Sidebar';
 import Month from './components/Month';
+import GlobalContext from './context/GlobalContext';
+
 
 function App() {
   // console.table(getMonth())
   const [currentMonth,setCurrentMonth]=useState(getMonth())
-   
+   const {monthIndex}=useContext(GlobalContext)
+
+   useEffect(()=>{
+    // console.log(monthIndex);
+setCurrentMonth(getMonth(monthIndex))
+   },[monthIndex])
+
   return (
     <React.Fragment>
 <div className='h-screen flex flex-col'>
