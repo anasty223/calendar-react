@@ -26,6 +26,19 @@ function handlePrevMonth(){
 function handleNextMonth(){
     setCurrentMonthIdx(currentMonthIdx +1)
 }
+
+function getDayClass(day){
+const format="DD-MM-YY"
+const nowDay=dayjs().format(format)
+const currDay=day.format(format)
+
+if(nowDay===currDay){
+    return 'bg-blue-500 rounded-full text-white'
+}else {
+    return""
+}
+}
+
   return (
     <div className="mt-9 ">
       <header className="flex justify-between">
@@ -50,7 +63,17 @@ chevron_right
             {day.format("dd").charAt(0)}
           </span>
         ))}
-
+{currentMonth.map((row,idx)=>(
+    <React.Fragment key={idx}>
+{row.map((day,idx)=>(
+<button key={idx} className={`py-1 w-full ${getDayClass(day)}`}>
+    <span className="text-sm">
+        {day.format('D')}
+    </span>
+</button>
+))}
+    </React.Fragment>
+))}
       </div>
     </div>
   );
