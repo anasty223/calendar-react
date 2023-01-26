@@ -6,6 +6,8 @@ const ContextWrapper = (props) => {
     const[monthIndex,setMonthIndex]=useState(dayjs().month())
     const [smallCalendarMonth,setSmallCalendarMonth]=useState(null)
     const [daySelected,setDaySelected]=useState(dayjs())
+    const [showEventModal,setShowEventModal]=useState(false)
+
 
 
     useEffect(() => {
@@ -15,7 +17,7 @@ const ContextWrapper = (props) => {
     }, [smallCalendarMonth]);
   return (
     
-    <GlobalContext.Provider value={{daySelected,setDaySelected,monthIndex,setMonthIndex,setSmallCalendarMonth,smallCalendarMonth}}>
+    <GlobalContext.Provider value={{showEventModal,setShowEventModal,daySelected,setDaySelected,monthIndex,setMonthIndex,setSmallCalendarMonth,smallCalendarMonth}}>
 {props.children}
     </GlobalContext.Provider>
   )
