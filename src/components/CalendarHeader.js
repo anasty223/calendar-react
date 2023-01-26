@@ -1,9 +1,17 @@
 import dayjs from "dayjs";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import GlobalContext from "../context/GlobalContext";
+import Modal from "./Modal";
+import SmallCalendar from "./SmallCalendar";
 
 
 const CalendarHeader = () => {
+  const [isShown, setIsshown] = useState(false);
+  const toggleModal = () => {
+      setIsshown(!isShown);
+    };
+
+
   const{monthIndex,setMonthIndex}=useContext(GlobalContext)
 
   function handlePrevMonth(){
@@ -34,7 +42,20 @@ function handleReset(){
         {dayjs(new Date(dayjs().year(),monthIndex)).format("MMMM YYYY")}
       </h2>
 
+ <button type="button"className="ml-2 flex " onClick={toggleModal}> 
+     
+          
+      <span className="material-symbols-outlined text-gray-600">
+date_range
+</span>
+    
+      </button>
 
+      {isShown && (
+        <Modal isShown={isShown} onClose={toggleModal}>
+    <SmallCalendar/>
+        </Modal>
+      )}
     </header>
   );
 };

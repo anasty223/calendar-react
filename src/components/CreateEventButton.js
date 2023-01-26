@@ -1,13 +1,7 @@
-import React, { useState } from "react";
-import Modal from "./Modal";
-import SmallCalendar from "./SmallCalendar";
+import React from "react";
 
 
 const CreateEventButton = () => {
-    // const [isShown, setIsshown] = useState(false);
-    // const toggleModal = () => {
-    //     setIsshown(!isShown);
-    //   };
 
 
   return (
@@ -17,11 +11,8 @@ const CreateEventButton = () => {
 add
 </span>
       </button>
-      {/* {isShown && (
-        <Modal isShown={isShown} onClose={toggleModal}>
-    
-        </Modal>
-      )} */}
+
+     
     </div>
   );
 };
