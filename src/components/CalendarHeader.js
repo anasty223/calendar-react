@@ -1,3 +1,4 @@
+import dayjs from "dayjs";
 import React, { useContext } from "react";
 import GlobalContext from "../context/GlobalContext";
 
@@ -27,6 +28,9 @@ const CalendarHeader = () => {
           chevron_right
         </span>
       </button>
+      <h2 className="ml-4 text-xl text-gray-500 font-bold">
+        {dayjs(new Date(dayjs().year(),monthIndex)).format("MMMM YYYY")}
+      </h2>
     </header>
   );
 };
