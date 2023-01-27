@@ -11,6 +11,7 @@ const labelsClasses = [
 ];
 
 export default function EventModal() {
+  const [date,SetDate]=useState(new Date())
   const {
     setShowEventModal,
     daySelected,
@@ -24,6 +25,11 @@ export default function EventModal() {
   const [description, setDescription] = useState(
     selectedEvent ? selectedEvent.description : ""
   );
+
+  const [time, setTime] = useState(
+    selectedEvent ? selectedEvent.time : ""
+  );
+
   const [selectedLabel, setSelectedLabel] = useState(
     selectedEvent
       ? labelsClasses.find((lbl) => lbl === selectedEvent.label)
@@ -35,6 +41,7 @@ export default function EventModal() {
     const calendarEvent = {
       title,
       description,
+      time,
       label: selectedLabel,
       day: daySelected.valueOf(),
       id: selectedEvent ? selectedEvent.id : Date.now(),
@@ -55,20 +62,7 @@ export default function EventModal() {
             drag_handle
           </span>
           <div>
-            {selectedEvent && (
-              <span
-                onClick={() => {
-                  dispatchCalEvent({
-                    type: "delete",
-                    payload: selectedEvent,
-                  });
-                  setShowEventModal(false);
-                }}
-                className="material-icons-outlined text-gray-400 cursor-pointer"
-              >
-                delete
-              </span>
-            )}
+
             <button onClick={() => setShowEventModal(false)}>
               <span className="material-icons-outlined text-gray-400">
                 close
@@ -79,31 +73,55 @@ export default function EventModal() {
         <div className="p-3">
           <div className="grid grid-cols-1/5 items-end gap-y-7">
             <div></div>
+          <label className="text-lg text-grey-600">
+          Add new idea item
             <input
               type="text"
               name="title"
-              placeholder="Add title"
+              placeholder="Title goes here..."
               value={title}
               required
-              className="pt-3 border-0 text-gray-600 text-xl font-semibold pb-2 w-full border-b-2 border-gray-200 focus:outline-none focus:ring-0 focus:border-blue-500"
+              className="pt-3 border-0 text-gray-600 pb-2 w-full border-b-2 border-gray-200 focus:outline-none focus:ring-0 focus:border-green-500"
               onChange={(e) => setTitle(e.target.value)}
             />
+          <h4 className="text-xs text-gray-300">title*</h4>
+          </label>
             <span className="material-icons-outlined text-gray-400">
               schedule
             </span>
-            <p>{daySelected.format("dddd, MMMM DD")}</p>
+
+
+            <p>
+            
+              <label className="text-gray-600" for="appt-time">
+           
+              Begin time:
+            <input
+              type="time"
+              name="appt-time"
+              placeholder="Begin time"
+              value={time}
+              required
+              pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}"
+              className="pt-1 border-0 text-gray-600 pb-2  border-b-2 border-gray-200 focus:outline-none focus:ring-0 focus:border-green-500"
+              onChange={(e) => setTime(e.target.value)}
+            /> <p className="border-b-2 border-gray-200 pt-4">  {daySelected.format("DD. MM. YYYY")}</p>
+           </label></p>
             <span className="material-icons-outlined text-gray-400">
-              segment
+              {/* segment */}
             </span>
+            <label>
+            <h4 className="text-xs text-gray-300">   description</h4>
             <input
               type="text"
               name="description"
-              placeholder="Add a description"
+              placeholder=""
               value={description}
               required
-              className="pt-3 border-0 text-gray-600 pb-2 w-full border-b-2 border-gray-200 focus:outline-none focus:ring-0 focus:border-blue-500"
+              className="pt-16 border-0 text-gray-600 pb-2 w-full border-b-2 border-gray-200 focus:outline-none focus:ring-0 focus:border-green-500"
               onChange={(e) => setDescription(e.target.value)}
             />
+            </label>
             <span className="material-icons-outlined text-gray-400">
               bookmark_border
             </span>
@@ -125,6 +143,21 @@ export default function EventModal() {
           </div>
         </div>
         <footer className="flex justify-end border-t p-3 mt-5">
+        <p className="text-xs flex-1 text-xs text-gray-400">created/update at: {date.toLocaleDateString()}</p>
+        {selectedEvent && (
+              <span
+                onClick={() => {
+                  dispatchCalEvent({
+                    type: "delete",
+                    payload: selectedEvent,
+                  });
+                  setShowEventModal(false);
+                }}
+                className="material-icons-outlined text-gray-400 cursor-pointer p-5"
+              >
+                delete
+              </span>
+            )}
           <button
             type="submit"
             onClick={handleSubmit}
