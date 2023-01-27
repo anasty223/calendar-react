@@ -15,7 +15,7 @@ export default function EventModal() {
     setShowEventModal,
     daySelected,
     dispatchCalEvent,
-    selectedEvent,
+    selectedEvent
   } = useContext(GlobalContext);
 
   const [title, setTitle] = useState(
