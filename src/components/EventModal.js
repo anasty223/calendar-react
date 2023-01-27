@@ -73,7 +73,7 @@ export default function EventModal() {
         <div className="p-3">
           <div className="grid grid-cols-1/5 items-end gap-y-7">
             <div></div>
-          <label className="text-lg text-grey-600">
+          <label className="text-lg text-grey-600 font-medium">
           Add new idea item
             <input
               type="text"

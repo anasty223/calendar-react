@@ -47,7 +47,7 @@ function handleReset(){
  <button type="button"className="ml-2 flex " onClick={toggleModal}> 
      
           
-      <span className="material-symbols-outlined text-gray-600">
+      <span className="material-symbols-outlined text-gray-600 ">
 date_range
 </span>
     
