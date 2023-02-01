@@ -37,7 +37,6 @@
       "react-app/jest"
     ]
   },
- 
   "devDependencies": {
     "autoprefixer": "^9",
     "postcss-flexbugs-fixes": "^5.0.2",
