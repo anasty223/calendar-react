@@ -11,6 +11,7 @@ const labelsClasses = [
 ];
 
 export default function EventModal() {
+  // eslint-disable-next-line no-unused-vars
   const [date,SetDate]=useState(new Date())
   const {
     setShowEventModal,
